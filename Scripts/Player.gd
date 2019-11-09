@@ -34,8 +34,6 @@ func _ready():
 func _process(delta):
 	
 	if self.global_position.distance_to(last_point) >= distance_moved:
-#		print(last_point)
-#		print((self.global_position - last_point).length())
 		walk_points.append(self.global_position)
 		
 		for i in range(walk_color.size()):
@@ -112,11 +110,47 @@ func _input(event):
 			do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
 
 func _physics_process(delta):
+	self.update()
 	$RayCast2D.cast_to = get_local_mouse_position() * 10
 	if $RayCast2D.is_colliding():
 			$ReflectionRay.global_position = $RayCast2D.get_collision_point() + ($RayCast2D.get_collision_normal() * 0.01)
 			$ReflectionRay.cast_to = -$RayCast2D.cast_to.reflect($RayCast2D.get_collision_normal())
 
+func _draw():
+	var raycast_start = $RayCast2D.get_position()
+	var raycast_end = $RayCast2D.cast_to
+	if $RayCast2D.is_colliding():
+		raycast_end = to_local($RayCast2D.get_collision_point())
+		var reflect_start = raycast_end + $RayCast2D.get_collision_normal() * 0.01
+		var reflect_end = $ReflectionRay.cast_to
+		if $ReflectionRay.is_colliding():
+			reflect_end = to_local($ReflectionRay.get_collision_point())
+		draw_dashed_line(reflect_start, reflect_end, Color(1,1,1), 1, 20)
+	draw_dashed_line(raycast_start, raycast_end, Color(1,1,1), 1, 20)
+
+func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = false, antialiased = false):
+	var length = (to - from).length()
+	var normal = (to - from).normalized()
+	var dash_step = normal * dash_length
+	
+	if length < dash_length: #not long enough to dash
+		draw_line(from, to, color, width, antialiased)
+		return
+
+	else:
+		var draw_flag = true
+		var segment_start = from
+		var steps = length/dash_length
+		for start_length in range(0, steps + 1):
+			var segment_end = segment_start + dash_step
+			if draw_flag:
+				draw_line(segment_start, segment_end, color, width, antialiased)
+
+			segment_start = segment_end
+			draw_flag = !draw_flag
+		
+		if cap_end:
+			draw_line(segment_start, to, color, width, antialiased)
 
 func on_line_touch(area):
 	get_tree().reload_current_scene()
