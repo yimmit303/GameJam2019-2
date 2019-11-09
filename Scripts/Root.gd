@@ -23,4 +23,4 @@ func add_area(added, prev_node):
 	new_collision.shape = shape
 	self.add_child(area)
 	area.add_child(new_collision)
-	area.connect("area_entered", get_node("Player"), "on_line_touch")
+	#area.connect("area_entered", get_node("Player"), "on_line_touch")

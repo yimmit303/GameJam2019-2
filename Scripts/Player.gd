@@ -29,8 +29,8 @@ func _process(delta):
 	if self.global_position.distance_to(last_point) >= distance_moved:
 #		print(last_point)
 #		print((self.global_position - last_point).length())
-		last_point = walk_points[walk_points.size() - 1]
 		walk_points.append(self.global_position)
+		last_point = walk_points[walk_points.size() - 1]
 		get_parent().update()
 		if walk_points.size() >= 3:
 			get_parent().add_area(walk_points[walk_points.size() - 3], walk_points[walk_points.size() - 2])
@@ -87,5 +87,5 @@ func _process(delta):
 	self.vel = self.move_and_slide(self.vel, Vector2(0,-1))
 
 func on_line_touch(area):
-	#get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
 	pass
