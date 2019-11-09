@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var vel = Vector2(0,0)
 var max_speed = 400
-var up = Vector2(0, -1)
+var up = 1
 
 var ACCEL = 4
 var DEACCEL = 8
@@ -132,8 +132,8 @@ func _draw():
 		var reflect_end = $ReflectionRay.cast_to
 		if $ReflectionRay.is_colliding():
 			reflect_end = to_local($ReflectionRay.get_collision_point())
-		draw_dashed_line(reflect_start, reflect_end, Color(1,1,1), 1, 20)
-	draw_dashed_line(raycast_start, raycast_end, Color(1,1,1), 1, 20)
+		draw_dashed_line(reflect_start, reflect_end, Color(1,1,1,0.5), 1, 20)
+	draw_dashed_line(raycast_start, raycast_end, Color(1,1,1,0.5), 1, 20)
 
 func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = false, antialiased = false):
 	var length = (to - from).length()
