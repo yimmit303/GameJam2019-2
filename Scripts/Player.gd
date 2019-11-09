@@ -9,8 +9,8 @@ var DEACCEL = 8
 var GRAVITY = 1800
 var JUMP_MULT = 2.5
 var LOW_JUMP_MULT = 2
-var distance_moved = 128
 
+var distance_moved = 64
 var walk_points = PoolVector2Array()
 var walk_color = PoolColorArray()
 var last_point
@@ -36,8 +36,8 @@ func _process(delta):
 		
 		for i in range(walk_color.size()):
 			if walk_color[i].b != 1:
-				walk_color[i].r -= 0.1
-				walk_color[i].b += 0.1
+				walk_color[i].r -= 0.05
+				walk_color[i].b += 0.05
 		walk_color.append(Color(1,0,0,1))
 		last_point = walk_points[walk_points.size() - 1]
 		get_parent().update()
