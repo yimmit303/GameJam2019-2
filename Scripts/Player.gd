@@ -10,6 +10,8 @@ var GRAVITY = 1800
 var JUMP_MULT = 2.5
 var LOW_JUMP_MULT = 2
 
+var timer = 2
+
 var distance_moved = 64
 var walk_points = PoolVector2Array()
 var walk_color = PoolColorArray()
@@ -32,6 +34,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	update_eye()
+	squish()
+	
+	if (randi() % 1000) == 0:
+		blink()
 	
 	if self.global_position.distance_to(last_point) >= distance_moved:
 		walk_points.append(self.global_position)
@@ -111,7 +118,7 @@ func _input(event):
 
 func _physics_process(delta):
 	self.update()
-	$RayCast2D.cast_to = get_local_mouse_position() * 10
+	$RayCast2D.cast_to = get_local_mouse_position().normalized() * 10000
 	if $RayCast2D.is_colliding():
 			$ReflectionRay.global_position = $RayCast2D.get_collision_point() + ($RayCast2D.get_collision_normal() * 0.01)
 			$ReflectionRay.cast_to = -$RayCast2D.cast_to.reflect($RayCast2D.get_collision_normal())
@@ -171,4 +178,24 @@ func do_teleport(pos):
 	walk_color.append(Color(1,0,0,1))
 	walk_color.append(Color(1,0,0,1))
 	get_parent().update()
+	
+func update_eye():
+	var mouse_pos = get_local_mouse_position()
+	var look_dir = mouse_pos.normalized()
+	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
+	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * min(1, mouse_pos.length()/500))
+
+func blink():
+	var blink_tween = $Tween
+	blink_tween.interpolate_property(get_node("Character/Lid"), "scale", Vector2(0.1, 1), Vector2(0.5, 1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	blink_tween.interpolate_property(get_node("Character/Lid2"), "scale", Vector2(0.1, 1), Vector2(0.5, 1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	blink_tween.start()
+	yield(blink_tween, "tween_all_completed")
+	blink_tween.interpolate_property(get_node("Character/Lid"), "scale", Vector2(0.5, 1), Vector2(0.1, 1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	blink_tween.interpolate_property(get_node("Character/Lid2"), "scale", Vector2(0.5, 1), Vector2(0.1, 1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	blink_tween.start()
+	
+func squish():
+	get_node("Character").scale.y = max(1, (vel.y / -2000) * 1.5)
+	get_node("Character").scale.x = max(1, (vel.y / -2000) * 0.8)
 	
