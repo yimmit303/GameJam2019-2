@@ -40,6 +40,7 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 1080, 0 )
 scale = Vector2( 32, 4 )
 
@@ -67,5 +68,5 @@ margin_bottom = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource( 1 )
-[connection signal="pressed" from="Button" to="Opened Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]
+[connection signal="pressed" from="Button" to="Opened Door" method="open"]
