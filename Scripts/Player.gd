@@ -12,8 +12,11 @@ var LOW_JUMP_MULT = 2
 
 var distance_moved = 64
 var walk_points = PoolVector2Array()
+var points_list_list = []
 var walk_color = PoolColorArray()
 var last_point
+
+var charge_num = 3
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +24,7 @@ func _ready():
 	last_point = self.global_position
 	walk_points.append(self.global_position)
 	walk_points.append(self.global_position)
+	points_list_list.append(walk_points)
 	walk_color.append(Color(1,0,0,1))
 	walk_color.append(Color(1,0,0,1))
 
@@ -94,6 +98,18 @@ func _process(delta):
 		self.vel.y += self.GRAVITY * delta
 	
 	self.vel = self.move_and_slide(self.vel, Vector2(0,-1))
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		if $ReflectionRay.is_colliding():
+			self.global_position = $ReflectionRay.get_collision_point()
+
+func _physics_process(delta):
+	$RayCast2D.cast_to = get_local_mouse_position() * 10
+	if $RayCast2D.is_colliding():
+			$ReflectionRay.global_position = $RayCast2D.get_collision_point() + ($RayCast2D.get_collision_normal() * 0.01)
+			$ReflectionRay.cast_to = -$RayCast2D.cast_to.reflect($RayCast2D.get_collision_normal())
+
 
 func on_line_touch(area):
 	get_tree().reload_current_scene()
