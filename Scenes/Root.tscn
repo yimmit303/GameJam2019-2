@@ -39,6 +39,20 @@ position = Vector2( 20, 20 )
 scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
 
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 313.852, -389.436 )
+scale = Vector2( 26.1286, 2.47585 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 20, 20 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 editor/display_folded = true
 position = Vector2( -1028.26, -187.258 )
