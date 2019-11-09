@@ -153,6 +153,8 @@ func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = false, 
 			draw_line(segment_start, to, color, width, antialiased)
 
 func on_line_touch(area):
+	if(area.name == "ButtonArea"):
+		return
 	get_tree().reload_current_scene()
 	pass
 
