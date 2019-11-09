@@ -12,8 +12,9 @@ var LOW_JUMP_MULT = 2
 
 var distance_moved = 64
 var walk_points = PoolVector2Array()
-var points_list_list = []
 var walk_color = PoolColorArray()
+var points_list_list = []
+var color_list_list = []
 var last_point
 
 var charge_num = 3
@@ -24,7 +25,6 @@ func _ready():
 	last_point = self.global_position
 	walk_points.append(self.global_position)
 	walk_points.append(self.global_position)
-	points_list_list.append(walk_points)
 	walk_color.append(Color(1,0,0,1))
 	walk_color.append(Color(1,0,0,1))
 
@@ -42,6 +42,13 @@ func _process(delta):
 			if walk_color[i].b != 1:
 				walk_color[i].r -= 0.05
 				walk_color[i].b += 0.05
+		
+		for color_list in color_list_list:
+			for i in range(color_list.size()):
+				if color_list[i].b != 1:
+					color_list[i].r -= 0.05
+					color_list[i].b += 0.05
+		
 		walk_color.append(Color(1,0,0,1))
 		last_point = walk_points[walk_points.size() - 1]
 		get_parent().update()
@@ -102,7 +109,7 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		if $ReflectionRay.is_colliding():
-			self.global_position = $ReflectionRay.get_collision_point()
+			do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
 
 func _physics_process(delta):
 	$RayCast2D.cast_to = get_local_mouse_position() * 10
@@ -114,3 +121,18 @@ func _physics_process(delta):
 func on_line_touch(area):
 	get_tree().reload_current_scene()
 	pass
+
+func do_teleport(pos):
+	self.global_position = pos
+	points_list_list.append(walk_points)
+	walk_points = PoolVector2Array()
+	walk_points.append(self.global_position)
+	walk_points.append(self.global_position)
+	last_point = self.global_position
+	
+	color_list_list.append(walk_color)
+	walk_color = PoolColorArray()
+	walk_color.append(Color(1,0,0,1))
+	walk_color.append(Color(1,0,0,1))
+	get_parent().update()
+	

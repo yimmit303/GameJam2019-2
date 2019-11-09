@@ -10,10 +10,23 @@ func _ready():
 	pass # Replace with function body.
 
 func _draw():
-	for walk_list in get_node("Player").points_list_list:
-		self.draw_polyline_colors(walk_list, get_node("Player").walk_color, 3)
-		for point in walk_list:
+	# We do a draw of the active list
+	self.draw_polyline_colors(get_node("Player").walk_points, get_node("Player").walk_color,3)
+	for point in get_node("Player").walk_points:
 			self.draw_circle(point, 5, Color(0,0,0,1))
+	
+	#Then we do a draw of the old lists in storage
+	for i in range(get_node("Player").points_list_list.size()):
+		var point_list = get_node("Player").points_list_list[i]
+		var color_list = get_node("Player").color_list_list[i]
+		self.draw_polyline_colors(point_list, color_list, 3)
+		for point in point_list:
+			self.draw_circle(point, 5, Color(0,0,0,1))
+		
+#	for walk_list in get_node("Player").points_list_list:
+#		self.draw_polyline_colors(walk_list, get_node("Player").walk_color, 3)
+#		for point in walk_list:
+#			self.draw_circle(point, 5, Color(0,0,0,1))
 
 func add_area(added, prev_node):
 	var area = Area2D.new()
