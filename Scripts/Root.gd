@@ -10,7 +10,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _draw():
-	self.draw_polyline(get_node("Player").walk_points, Color(1,0,0,1), 3)
+	self.draw_polyline_colors(get_node("Player").walk_points, get_node("Player").walk_color, 3)
 	for point in get_node("Player").walk_points:
 		self.draw_circle(point, 5, Color(0,0,0,1))
 

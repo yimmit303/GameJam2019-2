@@ -12,6 +12,7 @@ var LOW_JUMP_MULT = 2
 var distance_moved = 128
 
 var walk_points = PoolVector2Array()
+var walk_color = PoolColorArray()
 var last_point
 
 
@@ -20,6 +21,8 @@ func _ready():
 	last_point = self.global_position
 	walk_points.append(self.global_position)
 	walk_points.append(self.global_position)
+	walk_color.append(Color(1,0,0,1))
+	walk_color.append(Color(1,0,0,1))
 
 	
 
@@ -30,6 +33,12 @@ func _process(delta):
 #		print(last_point)
 #		print((self.global_position - last_point).length())
 		walk_points.append(self.global_position)
+		
+		for i in range(walk_color.size()):
+			if walk_color[i].b != 1:
+				walk_color[i].r -= 0.1
+				walk_color[i].b += 0.1
+		walk_color.append(Color(1,0,0,1))
 		last_point = walk_points[walk_points.size() - 1]
 		get_parent().update()
 		if walk_points.size() >= 3:
