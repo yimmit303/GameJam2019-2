@@ -9,13 +9,15 @@ var DEACCEL = 8
 var GRAVITY = 1800
 var JUMP_MULT = 2.5
 var LOW_JUMP_MULT = 2
-var timer = 0.1
+var distance_moved = 128
 
 var walk_points = PoolVector2Array()
+var last_point
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	last_point = self.global_position
 	walk_points.append(self.global_position)
 	walk_points.append(self.global_position)
 
@@ -24,12 +26,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	timer -= delta
-	if timer <= 0:
-		timer = 0.1
+	if self.global_position.distance_to(last_point) >= distance_moved:
+#		print(last_point)
+#		print((self.global_position - last_point).length())
+		last_point = walk_points[walk_points.size() - 1]
 		walk_points.append(self.global_position)
 		get_parent().update()
-	
+		if walk_points.size() >= 3:
+			get_parent().add_area(walk_points[walk_points.size() - 3], walk_points[walk_points.size() - 2])
 	
 	var dir = Vector2(0,0)
 	self.max_speed = 800
@@ -81,3 +85,7 @@ func _process(delta):
 		self.vel.y += self.GRAVITY * delta
 	
 	self.vel = self.move_and_slide(self.vel, Vector2(0,-1))
+
+func on_line_touch(area):
+	#get_tree().reload_current_scene()
+	pass
