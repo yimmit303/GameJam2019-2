@@ -14,6 +14,8 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -128 )
 
+[node name="Circles" type="Node2D" parent="."]
+
 [node name="Button" parent="." instance=ExtResource( 3 )]
 position = Vector2( 64.9701, -499.508 )
 
@@ -108,6 +110,6 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
-[connection signal="pressed" from="Button" to="Closed Door3" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door2" method="open"]
+[connection signal="pressed" from="Button" to="Closed Door3" method="open"]
