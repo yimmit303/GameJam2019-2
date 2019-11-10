@@ -192,6 +192,7 @@ stream = ExtResource( 11 )
 
 [node name="Level_Entrance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+volume_db = -9.613
 
 [node name="Level_Exit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
