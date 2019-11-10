@@ -1,36 +1,33 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Tele_Charge.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Tele_Charge.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -128 )
-
 [node name="Circles" type="Node2D" parent="."]
 
-[node name="Button" parent="." instance=ExtResource( 3 )]
+[node name="Button" parent="." instance=ExtResource( 2 )]
 position = Vector2( 82.588, -684.072 )
 
-[node name="Closed Door" parent="." instance=ExtResource( 4 )]
+[node name="Closed Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 979.363, -763.646 )
 scale = Vector2( 4, 12 )
 
-[node name="Closed Door2" parent="." instance=ExtResource( 4 )]
+[node name="Closed Door2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1177.08, -919.275 )
 rotation = 1.5708
 scale = Vector2( 4, 24 )
 
-[node name="Closed Door3" parent="." instance=ExtResource( 4 )]
+[node name="Closed Door3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1376.76, -760.514 )
 scale = Vector2( 4, 12 )
 
@@ -95,20 +92,23 @@ margin_bottom = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
 shape = SubResource( 1 )
 
-[node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
-[node name="Tele_Charge" parent="." instance=ExtResource( 6 )]
+[node name="Tele_Charge" parent="." instance=ExtResource( 5 )]
 position = Vector2( 315.574, -746.229 )
 
-[node name="Tele_Charge2" parent="." instance=ExtResource( 6 )]
+[node name="Tele_Charge2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 297.956, -160.965 )
 
-[node name="Exit_Portal" parent="." instance=ExtResource( 7 )]
+[node name="Exit_Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1181.55, -763.574 )
 scale = Vector2( 0.9, 0.9 )
 next_level = "Level5"
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -128 )
 [connection signal="pressed" from="Button" to="Closed Door3" method="open"]
-[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door2" method="open"]
+[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="collected" from="Tele_Charge" to="Player" method="add_charge"]
 [connection signal="collected" from="Tele_Charge2" to="Player" method="add_charge"]
