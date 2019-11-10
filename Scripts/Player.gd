@@ -66,7 +66,7 @@ func _process(delta):
 			get_tree().quit()
 	
 	if control:
-		if self.position.y > 2000:
+		if self.position.y > 2000 or self.position.y < -5000:
 			get_tree().reload_current_scene()
 		squish()
 		update_eye()
