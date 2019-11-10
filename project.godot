@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GameJam2019-2"
-run/main_scene="res://Scenes/Root.tscn"
+run/main_scene="res://Scenes/Level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]

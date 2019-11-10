@@ -77,5 +77,5 @@ next_level = "Level2"
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( -257.041, -111.067 )
-[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Opened Door" method="close"]
+[connection signal="pressed" from="Button" to="Closed Door" method="open"]
