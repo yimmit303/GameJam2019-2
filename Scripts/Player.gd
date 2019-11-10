@@ -37,6 +37,8 @@ func _process(delta):
 	update_eye()
 	squish()
 	
+	randomize()
+	
 	if (randi() % 1000) == 0:
 		blink()
 	
@@ -68,10 +70,12 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_A):
 		dir.x -= 1
 	if Input.is_key_pressed(KEY_SPACE) and self.is_on_floor():
-		self.vel.y = -2000
+		self.vel.y = up * -2000
 	if Input.is_key_pressed(KEY_SHIFT):
 		self.max_speed = 800
-
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
+		
 	#animation
 #	if Input.is_key_pressed(KEY_D):
 #		self.get_node("AnimatedSprite").flip_h = false
@@ -104,12 +108,12 @@ func _process(delta):
 	# Jumping
 	if not self.is_on_floor():
 		if (self.vel.y < 0 and !Input.is_action_pressed("Jump")):
-			self.vel.y += self.GRAVITY * (self.JUMP_MULT - 1) * delta
+			self.vel.y += up * self.GRAVITY * (self.JUMP_MULT - 1) * delta
 		elif (self.vel.y <= 0 and Input.is_action_pressed("Jump")):
-			self.vel.y += self.GRAVITY * (self.LOW_JUMP_MULT - 1) * delta
-		self.vel.y += self.GRAVITY * delta
+			self.vel.y += up * self.GRAVITY * (self.LOW_JUMP_MULT - 1) * delta
+		self.vel.y += up * self.GRAVITY * delta
 	
-	self.vel = self.move_and_slide(self.vel, Vector2(0,-1))
+	self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
@@ -183,7 +187,7 @@ func update_eye():
 	var mouse_pos = get_local_mouse_position()
 	var look_dir = mouse_pos.normalized()
 	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
-	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * min(1, mouse_pos.length()/500))
+	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * min(1, pow(mouse_pos.length(), 0.25)/5))
 
 func blink():
 	var blink_tween = $Tween
@@ -196,6 +200,9 @@ func blink():
 	blink_tween.start()
 	
 func squish():
-	get_node("Character").scale.y = max(1, (vel.y / -2000) * 1.5)
-	get_node("Character").scale.x = max(1, (vel.y / -2000) * 0.8)
+	get_node("Character").scale.y = clamp((up * vel.y / -2000) * 1.5, 1, 1.5)
+	get_node("Character").scale.x = max(1, (up * vel.y / -2000) * 0.8)
+
+func flip_gravity():
+	up *= -1
 	
