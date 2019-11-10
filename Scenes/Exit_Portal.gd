@@ -17,5 +17,5 @@ func _ready():
 #	pass
 
 func _on_Area2D_body_entered(body):
-	get_tree().change_scene("res://scense//" + next_level + ".tscn")
+	get_tree().change_scene("res://scenes//" + next_level + ".tscn")
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Opened Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -72,5 +73,9 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
+
+[node name="Exit_Portal" parent="." instance=ExtResource( 7 )]
+position = Vector2( 543.258, 230.553 )
+next_level = "Level2"
 [connection signal="pressed" from="Button" to="Opened Door" method="close"]
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]

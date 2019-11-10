@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Tele_Charge.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -18,19 +19,19 @@ position = Vector2( 0, -128 )
 [node name="Circles" type="Node2D" parent="."]
 
 [node name="Button" parent="." instance=ExtResource( 3 )]
-position = Vector2( 64.9701, -816.207 )
+position = Vector2( 82.588, -684.072 )
 
 [node name="Closed Door" parent="." instance=ExtResource( 4 )]
-position = Vector2( 961.745, -895.781 )
+position = Vector2( 979.363, -763.646 )
 scale = Vector2( 4, 12 )
 
 [node name="Closed Door2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1159.46, -1051.41 )
+position = Vector2( 1177.08, -919.275 )
 rotation = 1.5708
 scale = Vector2( 4, 24 )
 
 [node name="Closed Door3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1359.14, -892.649 )
+position = Vector2( 1376.76, -760.514 )
 scale = Vector2( 4, 12 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -50,7 +51,7 @@ shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 615.176, -1392.85 )
+position = Vector2( 641.603, -1072.79 )
 scale = Vector2( 16, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
@@ -65,7 +66,7 @@ shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 156.419, -759.85 )
+position = Vector2( 174.037, -627.715 )
 scale = Vector2( 24, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
@@ -97,7 +98,7 @@ shape = SubResource( 1 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 1159.39, -737.514 )
+position = Vector2( 1177.01, -605.379 )
 scale = Vector2( 24, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D6"]
@@ -113,10 +114,15 @@ shape = SubResource( 1 )
 [node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
 
 [node name="Tele_Charge" parent="." instance=ExtResource( 6 )]
-position = Vector2( 297.956, -878.364 )
+position = Vector2( 315.574, -746.229 )
 
 [node name="Tele_Charge2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 297.956, -160.965 )
+
+[node name="Exit_Portal" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1181.55, -763.574 )
+scale = Vector2( 0.9, 0.9 )
+next_level = "Level5"
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door2" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door3" method="open"]

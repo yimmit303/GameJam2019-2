@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Button_RG.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -160,6 +161,10 @@ position = Vector2( -315.354, -63.601 )
 [node name="Button_RG2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1385.97, -742.011 )
 rotation = 3.14159
+
+[node name="Exit_Portal" parent="." instance=ExtResource( 8 )]
+position = Vector2( 376.305, -193.453 )
+next_level = "Level1"
 [connection signal="collected" from="Tele_Charge" to="Player" method="add_charge"]
 [connection signal="collected" from="Tele_Charge2" to="Player" method="add_charge"]
 [connection signal="pressed" from="Button 1" to="First Door" method="open"]
