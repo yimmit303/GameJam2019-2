@@ -17,5 +17,6 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
+		$Click.play()
 		emit_signal("pressed")
 	pass # Replace with function body.
