@@ -7,8 +7,8 @@ var up = 1
 var ACCEL = 4
 var DEACCEL = 8
 var GRAVITY = 1800
-var JUMP_MULT = 2.5
-var LOW_JUMP_MULT = 2
+var JUMP_MULT = 1.5
+var LOW_JUMP_MULT = 1
 
 var timer = 2
 
@@ -66,6 +66,8 @@ func _process(delta):
 			get_tree().quit()
 	
 	if control:
+		if self.position.y > 2000 or self.position.y < -5000:
+			get_tree().reload_current_scene()
 		squish()
 		update_eye()
 		update_charges()
@@ -90,8 +92,8 @@ func _process(delta):
 			walk_color.append(Color(1,0,0,1))
 			last_point = walk_points[walk_points.size() - 1]
 			get_parent().update()
-			if walk_points.size() >= 3:
-				get_parent().add_area(walk_points[walk_points.size() - 3], walk_points[walk_points.size() - 2])
+			if walk_points.size() >= 4:
+				get_parent().add_area(walk_points[walk_points.size() - 4], walk_points[walk_points.size() - 3])
 		
 		var dir = Vector2(0,0)
 		self.max_speed = 800
@@ -139,9 +141,9 @@ func _process(delta):
 		# Jumping
 		if not self.is_on_floor():
 			if (self.vel.y < 0 and !Input.is_action_pressed("Jump")):
-				self.vel.y += up * self.GRAVITY * (self.JUMP_MULT - 1) * delta
+				self.vel.y += up * self.GRAVITY * (self.JUMP_MULT) * delta
 			elif (self.vel.y <= 0 and Input.is_action_pressed("Jump")):
-				self.vel.y += up * self.GRAVITY * (self.LOW_JUMP_MULT - 1) * delta
+				self.vel.y += up * self.GRAVITY * (self.LOW_JUMP_MULT) * delta
 			self.vel.y += up * self.GRAVITY * delta
 		
 		self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
