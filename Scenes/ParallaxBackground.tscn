@@ -10,23 +10,24 @@ scroll_limit_end = Vector2( 2048, 2048 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 position = Vector2( -256, -128 )
-scale = Vector2( 8, 8 )
 motion_scale = Vector2( 0, 0 )
 
 [node name="Sky" type="Sprite" parent="ParallaxLayer3"]
+scale = Vector2( 15, 12 )
 texture = ExtResource( 1 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.005, 0.005 )
+motion_scale = Vector2( 0.05, 0.05 )
 
 [node name="Background" type="Sprite" parent="ParallaxLayer2"]
 position = Vector2( -256, -128 )
-scale = Vector2( 4, 4 )
+scale = Vector2( 12, 5 )
 texture = ExtResource( 2 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.05, 0.05 )
+motion_scale = Vector2( 0.1, 0.1 )
 
 [node name="Foreground" type="Sprite" parent="ParallaxLayer"]
 position = Vector2( -256, -128 )
+scale = Vector2( 2, 1.5 )
 texture = ExtResource( 3 )
