@@ -99,9 +99,8 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 601.295, 349.18 )
-scale = Vector2( 16, 4 )
+position = Vector2( 440, 349.18 )
+scale = Vector2( 32, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D6"]
 anchor_bottom = 1.0
@@ -125,7 +124,7 @@ position = Vector2( 916.519, -51.5704 )
 position = Vector2( 239.59, -738.197 )
 
 [node name="Exit_Portal" parent="." instance=ExtResource( 6 )]
-position = Vector2( 596.656, 176.227 )
+position = Vector2( 208.026, 185.48 )
 next_level = "Level4"
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
