@@ -39,7 +39,7 @@ func _ready():
 		get_node("CanvasLayer/Title").visible = true
 		get_node("CanvasLayer/Play").visible = true
 		get_node("CanvasLayer/Exit").visible = true
-		get_node("Character").scale = Vector2(20,20)
+		get_node("Character").scale = Vector2(40,40)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -221,7 +221,7 @@ func update_eye_menu():
 	var mouse_pos = get_local_mouse_position()
 	var look_dir = mouse_pos.normalized()
 	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
-	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * mouse_pos.length()/1000)
+	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * mouse_pos.length()/2400)
 
 func blink():
 	var blink_tween = $Tween
@@ -234,7 +234,7 @@ func blink():
 	blink_tween.start()
 	
 func squish():
-	get_node("Character").scale.y = clamp((up * vel.y / -2000) * 1.5, 1, 1.5)
+	get_node("Character").scale.y = clamp((up * vel.y / -2000) * 1.7, 1, 1.7)
 	get_node("Character").scale.x = max(1, (up * vel.y / -2000) * 0.8)
 
 func flip_gravity():
