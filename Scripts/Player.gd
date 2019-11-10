@@ -94,6 +94,7 @@ func _process(delta):
 			dir.x -= 1
 		if Input.is_key_pressed(KEY_SPACE) and self.is_on_floor():
 			self.vel.y = up * -2000
+			$Jump.play()
 		if Input.is_key_pressed(KEY_SHIFT):
 			self.max_speed = 800
 
