@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Character.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Art_Assets/soupofjustice.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scripts/PlayButton.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Exit.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/Menu_Click.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/game_start.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Jump.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.7535, 64.2004 )
@@ -21,6 +24,22 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0.12549 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0.12549 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.6, 0.6, 0.6, 0.12549 )
 border_width_left = 2
 border_width_top = 2
@@ -130,7 +149,7 @@ margin_top = -49.5
 margin_right = 78.5
 margin_bottom = 49.5
 mouse_filter = 0
-custom_styles/normal = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 3 )
 text = "Play"
 align = 1
@@ -148,12 +167,21 @@ margin_top = -126.748
 margin_right = 84.2738
 margin_bottom = -48.7482
 mouse_filter = 0
-custom_styles/normal = SubResource( 4 )
+custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 3 )
 text = "EXIT"
 align = 1
 valign = 1
 script = ExtResource( 7 )
+
+[node name="Menu_Mouseover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Start" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
 [connection signal="area_entered" from="Area2D" to="." method="on_line_touch"]
 [connection signal="mouse_entered" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_exited"]
