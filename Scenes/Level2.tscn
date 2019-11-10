@@ -14,6 +14,8 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -257.041, -111.067 )
 
+[node name="Circles" type="Node2D" parent="."]
+
 [node name="Button" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1221.87, -326.051 )
 
