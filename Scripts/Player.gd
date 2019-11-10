@@ -267,6 +267,7 @@ func update_charges():
 
 func spawn_circles():
 	$CircleRay.rotation_degrees = randi() % 180
+	$CircleRay.cast_to *= up
 	if $CircleRay.is_colliding():
 		var spawn_point = $CircleRay.get_collision_point()
 		var circle_sprite = Sprite.new()

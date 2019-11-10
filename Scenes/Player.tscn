@@ -180,18 +180,21 @@ stream = ExtResource( 9 )
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
+volume_db = -4.825
 
 [node name="Charge_Get" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
 
 [node name="Level_Entrance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+volume_db = -9.613
 
 [node name="Level_Exit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
+volume_db = -6.433
 [connection signal="area_entered" from="Area2D" to="." method="on_line_touch"]
 [connection signal="mouse_entered" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_exited"]
