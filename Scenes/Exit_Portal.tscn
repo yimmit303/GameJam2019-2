@@ -19,9 +19,9 @@ texture = ExtResource( 3 )
 [node name="Sprite2" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ButtonArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea"]
 scale = Vector2( 12, 12 )
 shape = SubResource( 1 )
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="ButtonArea" to="." method="_on_Area2D_body_entered"]

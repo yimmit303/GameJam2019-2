@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,7 +18,7 @@ position = Vector2( -257.041, -111.067 )
 [node name="Circles" type="Node2D" parent="."]
 
 [node name="Button" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1221.87, -326.051 )
+position = Vector2( 1159.69, -416.934 )
 
 [node name="Closed Door" parent="." instance=ExtResource( 4 )]
 position = Vector2( 546, 0 )
@@ -53,7 +54,7 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( 1024, -256 )
+position = Vector2( 990.517, -363.625 )
 scale = Vector2( 24, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
@@ -67,7 +68,7 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( 256, -256 )
+position = Vector2( 222.517, -363.625 )
 scale = Vector2( 24, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D4"]
@@ -81,4 +82,8 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
+
+[node name="Exit_Portal" parent="." instance=ExtResource( 6 )]
+position = Vector2( 550.081, 246.341 )
+next_level = "Level3"
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]
