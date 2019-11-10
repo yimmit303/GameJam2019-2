@@ -107,8 +107,8 @@ position = Vector2( 297.956, -160.965 )
 position = Vector2( 1181.55, -763.574 )
 scale = Vector2( 0.9, 0.9 )
 next_level = "Level5"
+[connection signal="pressed" from="Button" to="Closed Door3" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door2" method="open"]
-[connection signal="pressed" from="Button" to="Closed Door3" method="open"]
 [connection signal="collected" from="Tele_Charge" to="Player" method="add_charge"]
 [connection signal="collected" from="Tele_Charge2" to="Player" method="add_charge"]
