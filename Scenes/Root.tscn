@@ -8,9 +8,6 @@
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -67.59, 271.468 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 editor/display_folded = true
 position = Vector2( -336.842, 333.518 )
@@ -66,3 +63,6 @@ margin_bottom = 40.0
 position = Vector2( 20, 20 )
 scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -67.59, 271.468 )

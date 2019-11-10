@@ -19,6 +19,8 @@ var points_list_list = []
 var color_list_list = []
 var last_point
 
+var control = true
+
 var charge_num = 3
 
 
@@ -29,91 +31,102 @@ func _ready():
 	walk_points.append(self.global_position)
 	walk_color.append(Color(1,0,0,1))
 	walk_color.append(Color(1,0,0,1))
-
+	if Globals.just_started:
+		control = false
+		get_node("Character").scale = Vector2(25,25)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_eye()
-	squish()
+	
+	if !control:
+		update_eye_menu()
 	
 	randomize()
 	
-	if (randi() % 1000) == 0:
+	if (randi() % 500) == 0:
 		blink()
 	
-	if self.global_position.distance_to(last_point) >= distance_moved:
-		walk_points.append(self.global_position)
-		
-		for i in range(walk_color.size()):
-			if walk_color[i].b != 1:
-				walk_color[i].r -= 0.05
-				walk_color[i].b += 0.05
-		
-		for color_list in color_list_list:
-			for i in range(color_list.size()):
-				if color_list[i].b != 1:
-					color_list[i].r -= 0.05
-					color_list[i].b += 0.05
-		
-		walk_color.append(Color(1,0,0,1))
-		last_point = walk_points[walk_points.size() - 1]
-		get_parent().update()
-		if walk_points.size() >= 3:
-			get_parent().add_area(walk_points[walk_points.size() - 3], walk_points[walk_points.size() - 2])
 	
-	var dir = Vector2(0,0)
-	self.max_speed = 800
-	
-	if Input.is_key_pressed(KEY_D):
-		dir.x += 1
-	if Input.is_key_pressed(KEY_A):
-		dir.x -= 1
-	if Input.is_key_pressed(KEY_SPACE) and self.is_on_floor():
-		self.vel.y = up * -2000
-	if Input.is_key_pressed(KEY_SHIFT):
-		self.max_speed = 800
 	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
+			get_tree().quit()
+	
+	if control:
+		squish()
+		update_eye()
 		
-	#animation
-#	if Input.is_key_pressed(KEY_D):
-#		self.get_node("AnimatedSprite").flip_h = false
-#		self.get_node("AnimatedSprite").play("Walking")
-#	elif Input.is_key_pressed(KEY_A):
-#		self.get_node("AnimatedSprite").flip_h = true
-#		self.get_node("AnimatedSprite").play("Walking")
-#	elif Input.is_key_pressed(KEY_SPACE):
-#		self.get_node("AnimatedSprite").play("Jump")
-#	else:
-#		self.get_node("AnimatedSprite").play("Idle")
-	dir = dir.normalized()
-	
-	var hvel = self.vel
-	hvel.y = 0
-	
-	var target = dir * self.max_speed
+		
+		if self.global_position.distance_to(last_point) >= distance_moved:
+			walk_points.append(self.global_position)
+			
+			for i in range(walk_color.size()):
+				if walk_color[i].b != 1:
+					walk_color[i].r -= 0.05
+					walk_color[i].b += 0.05
+			
+			for color_list in color_list_list:
+				for i in range(color_list.size()):
+					if color_list[i].b != 1:
+						color_list[i].r -= 0.05
+						color_list[i].b += 0.05
+			
+			walk_color.append(Color(1,0,0,1))
+			last_point = walk_points[walk_points.size() - 1]
+			get_parent().update()
+			if walk_points.size() >= 3:
+				get_parent().add_area(walk_points[walk_points.size() - 3], walk_points[walk_points.size() - 2])
+		
+		var dir = Vector2(0,0)
+		self.max_speed = 800
+		
+		if Input.is_key_pressed(KEY_D):
+			dir.x += 1
+		if Input.is_key_pressed(KEY_A):
+			dir.x -= 1
+		if Input.is_key_pressed(KEY_SPACE) and self.is_on_floor():
+			self.vel.y = up * -2000
+		if Input.is_key_pressed(KEY_SHIFT):
+			self.max_speed = 800
 
-	
-	var accel
-	
-	if (dir.dot(hvel) > 0):
-		accel = self.ACCEL
-	else:
-		accel = self.DEACCEL
+			
+		#animation
+	#	if Input.is_key_pressed(KEY_D):
+	#		self.get_node("AnimatedSprite").flip_h = false
+	#		self.get_node("AnimatedSprite").play("Walking")
+	#	elif Input.is_key_pressed(KEY_A):
+	#		self.get_node("AnimatedSprite").flip_h = true
+	#		self.get_node("AnimatedSprite").play("Walking")
+	#	elif Input.is_key_pressed(KEY_SPACE):
+	#		self.get_node("AnimatedSprite").play("Jump")
+	#	else:
+	#		self.get_node("AnimatedSprite").play("Idle")
+		dir = dir.normalized()
 		
-	hvel = hvel.linear_interpolate(target, accel*delta)
-	self.vel.x = hvel.x
+		var hvel = self.vel
+		hvel.y = 0
+		
+		var target = dir * self.max_speed
 	
-	# Jumping
-	if not self.is_on_floor():
-		if (self.vel.y < 0 and !Input.is_action_pressed("Jump")):
-			self.vel.y += up * self.GRAVITY * (self.JUMP_MULT - 1) * delta
-		elif (self.vel.y <= 0 and Input.is_action_pressed("Jump")):
-			self.vel.y += up * self.GRAVITY * (self.LOW_JUMP_MULT - 1) * delta
-		self.vel.y += up * self.GRAVITY * delta
-	
-	self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
+		
+		var accel
+		
+		if (dir.dot(hvel) > 0):
+			accel = self.ACCEL
+		else:
+			accel = self.DEACCEL
+			
+		hvel = hvel.linear_interpolate(target, accel*delta)
+		self.vel.x = hvel.x
+		
+		# Jumping
+		if not self.is_on_floor():
+			if (self.vel.y < 0 and !Input.is_action_pressed("Jump")):
+				self.vel.y += up * self.GRAVITY * (self.JUMP_MULT - 1) * delta
+			elif (self.vel.y <= 0 and Input.is_action_pressed("Jump")):
+				self.vel.y += up * self.GRAVITY * (self.LOW_JUMP_MULT - 1) * delta
+			self.vel.y += up * self.GRAVITY * delta
+		
+		self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
@@ -189,6 +202,12 @@ func update_eye():
 	var look_dir = mouse_pos.normalized()
 	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
 	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * min(1, pow(mouse_pos.length(), 0.25)/5))
+
+func update_eye_menu():
+	var mouse_pos = get_local_mouse_position()
+	var look_dir = mouse_pos.normalized()
+	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
+	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * mouse_pos.length()/1100)
 
 func blink():
 	var blink_tween = $Tween
