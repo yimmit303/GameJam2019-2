@@ -136,6 +136,7 @@ func _draw():
 		var reflect_end = $ReflectionRay.cast_to
 		if $ReflectionRay.is_colliding():
 			reflect_end = to_local($ReflectionRay.get_collision_point())
+			draw_rect(Rect2(reflect_end - Vector2(64,64) + $ReflectionRay.get_collision_normal() * 64,Vector2(128,128)),Color(1,1,1,0.5),false)
 		draw_dashed_line(reflect_start, reflect_end, Color(1,1,1,0.5), 1, 20)
 	draw_dashed_line(raycast_start, raycast_end, Color(1,1,1,0.5), 1, 20)
 
