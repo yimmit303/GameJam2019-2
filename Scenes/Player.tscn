@@ -74,7 +74,9 @@ cast_to = Vector2( 0, 0 )
 [node name="ReflectionRay" type="RayCast2D" parent="."]
 enabled = true
 
-[node name="CircleRay" type="RayCast2D" parent="ReflectionRay"]
+[node name="CircleRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 100, 0 )
 
 [node name="Tween" type="Tween" parent="."]
 
