@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-signal pressed
+signal collected
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,5 +17,6 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
-		emit_signal("pressed")
+		emit_signal("collected")
+	self.queue_free()
 	pass # Replace with function body.

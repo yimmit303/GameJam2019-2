@@ -4,7 +4,9 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-signal pressed
+signal exited
+
+export var next_level = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,8 +16,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
 func _on_Area2D_body_entered(body):
-	if body.name == "Player":
-		emit_signal("pressed")
+	get_tree().change_scene("res://scense//" + next_level + ".tscn")
 	pass # Replace with function body.

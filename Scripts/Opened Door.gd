@@ -22,3 +22,7 @@ func _ready():
 func open():
 	self.position = pos
 	pass
+
+func close():
+	self.position = pos
+	pass # Replace with function body.
