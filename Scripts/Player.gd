@@ -23,6 +23,8 @@ var control = true
 
 var charge_num = 0
 
+var texture = load("res://Eye_Back.png")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,6 +63,9 @@ func _process(delta):
 		update_charges()
 		
 		if self.global_position.distance_to(last_point) >= distance_moved:
+			
+			spawn_circles()
+			
 			walk_points.append(self.global_position)
 			
 			for i in range(walk_color.size()):
@@ -247,4 +252,20 @@ func update_charges():
 		get_node("CanvasLayer/Charge_Count").visible = false
 
 func spawn_circles():
-	print("goo")
+	$CircleRay.rotation_degrees = randi() % 180
+	if $CircleRay.is_colliding():
+		var spawn_point = $CircleRay.get_collision_point()
+		var circle_sprite = Sprite.new()
+		circle_sprite.texture = self.texture
+		var spawn_size = clamp(randf(), 0.5, 2)
+		circle_sprite.scale = Vector2(spawn_size,spawn_size)
+		$Tween.interpolate_property(circle_sprite, "scale", Vector2(0,0), circle_sprite.scale, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		circle_sprite.scale = Vector2(0,0)
+		circle_sprite.global_position = spawn_point
+		if randi() % 2 == 0:
+			circle_sprite.modulate = Color(0.3,0.3,0.4,1)
+			get_parent().add_child(circle_sprite)
+			get_parent().move_child(circle_sprite, 0)
+		else:
+			get_parent().add_child_below_node(self, circle_sprite)
+		$Tween.start()
