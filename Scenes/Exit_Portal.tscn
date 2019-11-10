@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Exit_Portal.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Exit_Portal.gd" type="Script" id=1]
 [ext_resource path="res://Art_Assets/Exit2.png" type="Texture" id=2]
 [ext_resource path="res://Art_Assets/Exit3.png" type="Texture" id=3]
 [ext_resource path="res://Art_Assets/Exit1.png" type="Texture" id=4]
