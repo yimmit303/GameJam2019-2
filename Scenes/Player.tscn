@@ -8,13 +8,13 @@
 [ext_resource path="res://Scripts/PlayButton.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Exit.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.7535, 64.2004 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 51.9977, 53.7439 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 64
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
@@ -60,12 +60,12 @@ texture = ExtResource( 2 )
 offset = Vector2( -64, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
@@ -73,6 +73,8 @@ cast_to = Vector2( 0, 0 )
 
 [node name="ReflectionRay" type="RayCast2D" parent="."]
 enabled = true
+
+[node name="CircleRay" type="RayCast2D" parent="ReflectionRay"]
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -84,7 +86,7 @@ margin_left = 40.0
 margin_top = 40.0452
 margin_right = 403.365
 margin_bottom = 104.045
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Charges: I I I"
 align = 1
 valign = 1
@@ -109,7 +111,7 @@ margin_top = -120.0
 margin_right = 578.0
 margin_bottom = 15.0
 custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Chub's Magic Special Adventure on the 
 Planet Where you Can't Turn Around"
 align = 1
@@ -127,7 +129,7 @@ margin_right = 78.5
 margin_bottom = 49.5
 mouse_filter = 0
 custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Play"
 align = 1
 valign = 1
@@ -145,7 +147,7 @@ margin_right = 84.2738
 margin_bottom = -48.7482
 mouse_filter = 0
 custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "EXIT"
 align = 1
 valign = 1
