@@ -39,7 +39,7 @@ func _ready():
 		get_node("CanvasLayer/Title").visible = true
 		get_node("CanvasLayer/Play").visible = true
 		get_node("CanvasLayer/Exit").visible = true
-		get_node("Character").scale = Vector2(25,25)
+		get_node("Character").scale = Vector2(20,20)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

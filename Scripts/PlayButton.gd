@@ -12,7 +12,7 @@ func _input(event):
 			character_tween.interpolate_property(self, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			character_tween.interpolate_property(get_node("../Exit"), "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			character_tween.interpolate_property(get_node("../Title"), "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			character_tween.interpolate_property(get_node("../../Character"), "scale", Vector2(25,25), Vector2(1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			character_tween.interpolate_property(get_node("../../Character"), "scale", Vector2(20,20), Vector2(1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			character_tween.interpolate_property(get_node("../ColorRect"), "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			get_node("../../Start").play()
 			character_tween.start()
