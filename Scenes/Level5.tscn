@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Root" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -128 )
+
+[node name="Gravity Flipper" parent="." instance=ExtResource( 3 )]
+position = Vector2( -351.485, -79.7997 )
+
+[node name="Gravity Flipper 2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1282.4, -726.807 )
+
+[node name="Button 1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 24.474, -727.28 )
+
+[node name="Button 2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -166.859, -880.85 )
+
+[node name="Button 3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1375.46, -332.292 )
+
+[node name="Exit Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( 584.333, -180.608 )
+scale = Vector2( 4, 16 )
+
+[node name="First Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( 216.773, -585.931 )
+scale = Vector2( 4, 18 )
+
+[node name="Top Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( 640, -800 )
+rotation = 1.5708
+scale = Vector2( 4, 48 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 343.846, -6.50708 )
+scale = Vector2( 80, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 512, -1280 )
+scale = Vector2( 32, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( -160, -800 )
+scale = Vector2( 32, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 384.168, -373.285 )
+scale = Vector2( 24, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 0, -0.512634 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 182.728, -188.313 )
+scale = Vector2( 4, 16 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D5"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1280, -256 )
+scale = Vector2( 16, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D6"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( 0, 0.813385 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2( 1280, -800 )
+scale = Vector2( 24, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D7"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+shape = SubResource( 1 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
+[connection signal="pressed" from="Gravity Flipper" to="Player" method="flip_gravity"]
+[connection signal="pressed" from="Gravity Flipper 2" to="Player" method="flip_gravity"]
+[connection signal="pressed" from="Button 1" to="First Door" method="open"]
+[connection signal="pressed" from="Button 2" to="Exit Door" method="open"]
+[connection signal="pressed" from="Button 3" to="Top Door" method="open"]
