@@ -79,7 +79,7 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2( -640.872, -370.8 )
+position = Vector2( -633.697, -466.466 )
 scale = Vector2( 24, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D5"]
