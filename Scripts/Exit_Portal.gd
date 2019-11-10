@@ -23,5 +23,6 @@ func _process(delta):
 
 func _on_Area2D_body_entered(body):
 	get_parent().get_node("Player").do_exit_animation()
+	yield(get_tree().create_timer(1.0), "timeout")
 	get_tree().change_scene("res://scenes//" + next_level + ".tscn")
 	pass # Replace with function body.
