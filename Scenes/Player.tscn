@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Character.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sounds/game_start.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/Jump.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/TP_charge.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Teleport.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.7535, 64.2004 )
@@ -100,6 +101,8 @@ cast_to = Vector2( 100, 0 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Swirl_Tween" type="Tween" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Charge_Count" type="Label" parent="CanvasLayer"]
@@ -184,6 +187,9 @@ stream = ExtResource( 10 )
 
 [node name="Charge_Get" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
 [connection signal="area_entered" from="Area2D" to="." method="on_line_touch"]
 [connection signal="mouse_entered" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Play" to="CanvasLayer/Play" method="_on_Play_mouse_exited"]

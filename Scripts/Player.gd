@@ -40,6 +40,14 @@ func _ready():
 		get_node("CanvasLayer/Play").visible = true
 		get_node("CanvasLayer/Exit").visible = true
 		get_node("Character").scale = Vector2(40,40)
+	else:
+		control = false
+		var tween = $Swirl_Tween
+		tween.interpolate_property($Character, "rotation_degrees", -720, 0, 1, Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
+		tween.interpolate_property($Character, "scale", Vector2(0,0), Vector2(1,1), 1, Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		control = true
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -198,6 +206,7 @@ func on_line_touch(area):
 	pass
 
 func do_teleport(pos):
+	$Teleport.play()
 	self.global_position = pos
 	points_list_list.append(walk_points)
 	walk_points = PoolVector2Array()
@@ -271,3 +280,9 @@ func spawn_circles():
 		else:
 			get_parent().add_child_below_node(self, circle_sprite)
 		$Tween.start()
+
+func do_exit_animation():
+	var tween = $Swirl_Tween
+	tween.interpolate_property($Character, "rotation_degrees", -720, 0, 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	tween.interpolate_property($Character, "scale", Vector2(1,1), Vector2(0,0), 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	yield(tween,"tween_all_completed")
