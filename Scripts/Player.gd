@@ -33,6 +33,10 @@ func _ready():
 	walk_color.append(Color(1,0,0,1))
 	if Globals.just_started:
 		control = false
+		#get_node("CanvasLayer/ColorRect").visible = true
+		get_node("CanvasLayer/Title").visible = true
+		get_node("CanvasLayer/Play").visible = true
+		get_node("CanvasLayer/Exit").visible = true
 		get_node("Character").scale = Vector2(25,25)
 	
 
@@ -129,9 +133,12 @@ func _process(delta):
 		self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		if $ReflectionRay.is_colliding():
-			do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
+	if control:
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+			if $ReflectionRay.is_colliding():
+				if charge_num > 0:
+					do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
+					charge_num -= 1
 
 func _physics_process(delta):
 	self.update()
