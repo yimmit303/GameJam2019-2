@@ -78,6 +78,20 @@ margin_bottom = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 shape = SubResource( 1 )
 
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 0, -600 )
+scale = Vector2( 32, 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D5"]
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource( 1 )
+
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
 [node name="Button_RG" parent="." instance=ExtResource( 4 )]
