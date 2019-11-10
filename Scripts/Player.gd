@@ -46,6 +46,7 @@ func _ready():
 		tween.interpolate_property($Character, "rotation_degrees", -720, 0, 1, Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
 		tween.interpolate_property($Character, "scale", Vector2(0,0), Vector2(1,1), 1, Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
 		tween.start()
+		$Level_Entrance.play()
 		yield(tween, "tween_all_completed")
 		control = true
 	
@@ -289,4 +290,5 @@ func do_exit_animation():
 	tween.interpolate_property($Character, "rotation_degrees", -720, 0, 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	tween.interpolate_property($Character, "scale", Vector2(1,1), Vector2(0,0), 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	tween.start()
+	$Level_Exit.play()
 	yield(tween,"tween_all_completed")
