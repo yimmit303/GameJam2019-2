@@ -221,7 +221,7 @@ func update_eye_menu():
 	var mouse_pos = get_local_mouse_position()
 	var look_dir = mouse_pos.normalized()
 	get_node("Character/Eye/Eye_Pupil").position = Vector2(0,0)
-	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * mouse_pos.length()/1100)
+	get_node("Character/Eye/Eye_Pupil").position += look_dir * (25 * mouse_pos.length()/1000)
 
 func blink():
 	var blink_tween = $Tween
@@ -241,6 +241,7 @@ func flip_gravity():
 	up *= -1
 
 func add_charge():
+	$Charge_Get.play()
 	charge_num += 1
 
 func update_charges():
