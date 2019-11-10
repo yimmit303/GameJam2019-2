@@ -80,22 +80,6 @@ margin_bottom = 10.0
 position = Vector2( 0, -0.512634 )
 shape = SubResource( 1 )
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 634.972, -100.467 )
-rotation = 0.785398
-scale = Vector2( 4, 16 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D5"]
-anchor_bottom = 1.0
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-shape = SubResource( 1 )
-
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
 editor/display_folded = true
 position = Vector2( 1177.01, -605.379 )
