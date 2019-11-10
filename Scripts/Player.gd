@@ -21,7 +21,7 @@ var last_point
 
 var control = true
 
-var charge_num = 3
+var charge_num = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +33,10 @@ func _ready():
 	walk_color.append(Color(1,0,0,1))
 	if Globals.just_started:
 		control = false
+		#get_node("CanvasLayer/ColorRect").visible = true
+		get_node("CanvasLayer/Title").visible = true
+		get_node("CanvasLayer/Play").visible = true
+		get_node("CanvasLayer/Exit").visible = true
 		get_node("Character").scale = Vector2(25,25)
 	
 
@@ -54,7 +58,7 @@ func _process(delta):
 	if control:
 		squish()
 		update_eye()
-		
+		update_charges()
 		
 		if self.global_position.distance_to(last_point) >= distance_moved:
 			walk_points.append(self.global_position)
@@ -129,9 +133,12 @@ func _process(delta):
 		self.vel = self.move_and_slide(self.vel, Vector2(0,-1 * up))
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		if $ReflectionRay.is_colliding():
-			do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
+	if control:
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+			if $ReflectionRay.is_colliding():
+				if charge_num > 0:
+					do_teleport($ReflectionRay.get_collision_point() + $ReflectionRay.get_collision_normal() * 64)
+					charge_num -= 1
 
 func _physics_process(delta):
 	self.update()
@@ -141,17 +148,18 @@ func _physics_process(delta):
 			$ReflectionRay.cast_to = -$RayCast2D.cast_to.reflect($RayCast2D.get_collision_normal())
 
 func _draw():
-	var raycast_start = $RayCast2D.get_position()
-	var raycast_end = $RayCast2D.cast_to
-	if $RayCast2D.is_colliding():
-		raycast_end = to_local($RayCast2D.get_collision_point())
-		var reflect_start = raycast_end + $RayCast2D.get_collision_normal() * 0.01
-		var reflect_end = $ReflectionRay.cast_to
-		if $ReflectionRay.is_colliding():
-			reflect_end = to_local($ReflectionRay.get_collision_point())
-			draw_rect(Rect2(reflect_end - Vector2(64,64) + $ReflectionRay.get_collision_normal() * 64,Vector2(128,128)),Color(1,1,1,0.5),false)
-		draw_dashed_line(reflect_start, reflect_end, Color(1,1,1,0.5), 1, 20)
-	draw_dashed_line(raycast_start, raycast_end, Color(1,1,1,0.5), 1, 20)
+	if charge_num > 0:
+		var raycast_start = $RayCast2D.get_position()
+		var raycast_end = $RayCast2D.cast_to
+		if $RayCast2D.is_colliding():
+			raycast_end = to_local($RayCast2D.get_collision_point())
+			var reflect_start = raycast_end + $RayCast2D.get_collision_normal() * 0.01
+			var reflect_end = $ReflectionRay.cast_to
+			if $ReflectionRay.is_colliding():
+				reflect_end = to_local($ReflectionRay.get_collision_point())
+				draw_rect(Rect2(reflect_end - Vector2(64,64) + $ReflectionRay.get_collision_normal() * 64,Vector2(128,128)),Color(1,1,1,0.5),false)
+			draw_dashed_line(reflect_start, reflect_end, Color(1,1,1,0.5), 1, 20)
+		draw_dashed_line(raycast_start, raycast_end, Color(1,1,1,0.5), 1, 20)
 
 func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = false, antialiased = false):
 	var length = (to - from).length()
@@ -225,4 +233,18 @@ func squish():
 
 func flip_gravity():
 	up *= -1
-	
+
+func add_charge():
+	charge_num += 1
+
+func update_charges():
+	if charge_num > 0:
+		get_node("CanvasLayer/Charge_Count").visible = true
+		get_node("CanvasLayer/Charge_Count").text = "Charges: "
+		for i in range(charge_num):
+			get_node("CanvasLayer/Charge_Count").text += "I "
+	else:
+		get_node("CanvasLayer/Charge_Count").visible = false
+
+func spawn_circles():
+	print("goo")
