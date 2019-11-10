@@ -285,4 +285,5 @@ func do_exit_animation():
 	var tween = $Swirl_Tween
 	tween.interpolate_property($Character, "rotation_degrees", -720, 0, 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	tween.interpolate_property($Character, "scale", Vector2(1,1), Vector2(0,0), 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	tween.start()
 	yield(tween,"tween_all_completed")
