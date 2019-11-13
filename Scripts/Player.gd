@@ -39,6 +39,9 @@ func _ready():
 		get_node("CanvasLayer/Title").visible = true
 		get_node("CanvasLayer/Play").visible = true
 		get_node("CanvasLayer/Exit").visible = true
+		get_node("CanvasLayer/BlackFade").visible = true
+		$Tween.interpolate_property(get_node("CanvasLayer/BlackFade"), "modulate", Color(0,0,0,1), Color(0,0,0,0), 1, Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
+		$Tween.start()
 		get_node("Character").scale = Vector2(40,40)
 	else:
 		control = false
