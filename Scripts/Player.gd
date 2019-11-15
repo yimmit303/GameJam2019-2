@@ -111,6 +111,11 @@ func _process(delta):
 			$Jump.play()
 		if Input.is_key_pressed(KEY_SHIFT):
 			self.max_speed = 800
+		if Input.is_key_pressed(KEY_R):
+			get_tree().reload_current_scene()
+		if Input.is_key_pressed(KEY_BACKSPACE):
+			Globals.just_started = true
+			get_tree().change_scene("res://scenes//Level1.tscn")
 
 			
 		#animation
