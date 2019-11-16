@@ -47,8 +47,9 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 652.761, -1270.85 )
-scale = Vector2( 16, 16 )
+scale = Vector2( 48, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
 anchor_bottom = 1.0
@@ -78,8 +79,8 @@ shape = SubResource( 1 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
 editor/display_folded = true
-position = Vector2( 1177.01, -605.379 )
-scale = Vector2( 24, 4 )
+position = Vector2( 1177.01, -320 )
+scale = Vector2( 24, 32 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D6"]
 anchor_bottom = 1.0
@@ -106,8 +107,8 @@ next_level = "Level5"
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, -128 )
-[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door2" method="open"]
+[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Closed Door3" method="open"]
 [connection signal="collected" from="Tele_Charge" to="Player" method="add_charge"]
 [connection signal="collected" from="Tele_Charge2" to="Player" method="add_charge"]
