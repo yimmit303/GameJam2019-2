@@ -15,14 +15,9 @@ func _ready():
 	pos = sBody.position
 	sBody.position = Vector2(1000000000,1000000000)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func close():
 	sBody.position = pos
 	cRect.color = Color(.5,1,.5, 1)
-	pass # Replace with function body.
 
 func _draw():
 	draw_rect(cRect.get_rect(), Color(.5,1,.5,.5), false)

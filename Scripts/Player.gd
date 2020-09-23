@@ -23,7 +23,7 @@ var control = true
 
 var charge_num = 0
 
-var texture = load("res://Eye_Back.png")
+var texture = load("Eye_Back.png")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -115,20 +115,8 @@ func _process(delta):
 			get_tree().reload_current_scene()
 		if Input.is_key_pressed(KEY_BACKSPACE):
 			Globals.just_started = true
-			get_tree().change_scene("res://scenes//Level1.tscn")
-
+			get_tree().change_scene("Scenes/Level1.tscn")
 			
-		#animation
-	#	if Input.is_key_pressed(KEY_D):
-	#		self.get_node("AnimatedSprite").flip_h = false
-	#		self.get_node("AnimatedSprite").play("Walking")
-	#	elif Input.is_key_pressed(KEY_A):
-	#		self.get_node("AnimatedSprite").flip_h = true
-	#		self.get_node("AnimatedSprite").play("Walking")
-	#	elif Input.is_key_pressed(KEY_SPACE):
-	#		self.get_node("AnimatedSprite").play("Jump")
-	#	else:
-	#		self.get_node("AnimatedSprite").play("Idle")
 		dir = dir.normalized()
 		
 		var hvel = self.vel
@@ -214,7 +202,6 @@ func on_line_touch(area):
 	if(area.name == "ButtonArea"):
 		return
 	get_tree().reload_current_scene()
-	pass
 
 func do_teleport(pos):
 	$Teleport.play()
