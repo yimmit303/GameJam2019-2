@@ -7,7 +7,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#OS.window_position = Vector2(0,0)
-	OS.window_fullscreen = true
+	#OS.window_fullscreen = true
 	pass # Replace with function body.
 
 func _draw():

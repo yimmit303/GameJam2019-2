@@ -1,17 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Closed Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Opened Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Exit_Portal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_left = -2979.0
+margin_top = -2124.0
+margin_right = 2523.0
+margin_bottom = 1881.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="Circles" type="Node2D" parent="."]
 
@@ -27,7 +34,6 @@ position = Vector2( 800, -121.902 )
 scale = Vector2( 4, 8 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-editor/display_folded = true
 scale = Vector2( 32, 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
@@ -41,7 +47,6 @@ margin_bottom = 10.0
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1080, 0 )
 scale = Vector2( 32, 4 )
 
@@ -69,13 +74,11 @@ margin_bottom = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource( 1 )
 
-[node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
-
-[node name="Exit_Portal" parent="." instance=ExtResource( 6 )]
+[node name="Exit_Portal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 543.258, 230.553 )
 next_level = "Level2"
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( -257.041, -111.067 )
-[connection signal="pressed" from="Button" to="Closed Door" method="open"]
 [connection signal="pressed" from="Button" to="Opened Door" method="close"]
+[connection signal="pressed" from="Button" to="Closed Door" method="open"]

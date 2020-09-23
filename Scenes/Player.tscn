@@ -70,6 +70,7 @@ texture = ExtResource( 3 )
 texture = ExtResource( 4 )
 
 [node name="Lid" type="Sprite" parent="Character"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -62.7456, 0 )
 scale = Vector2( 0.1, 0.8 )
@@ -77,6 +78,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 64, 0 )
 
 [node name="Lid2" type="Sprite" parent="Character"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 62.3275, 0 )
 scale = Vector2( 0.1, 0.8 )
